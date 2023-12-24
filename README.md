@@ -1,8 +1,6 @@
 # DeepMatching
 
-TODO: Delete this and the text below, and describe your gem
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/deep_matching`. To experiment with that code, run `bin/console` for an interactive prompt.
+This allows you to get detailed error messages on exactly where your heavily nested hashes differ
 
 ## Installation
 
@@ -18,7 +16,12 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'deep_matching'
+RSpec.configure do |config|
+  config.include DeepMatching
+end
+```
 
 ## Development
 
