@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    deep_matching (0.1.0)
+    deep_matching (0.1.0.pre.alpha.1)
       activemodel
       activesupport
       rspec
