@@ -42,7 +42,7 @@ RSpec.describe DeepMatching do
     expect_failure(actual, expected, path: 'b.c.2.d', expected_value: '"expected"', got: '"actual"')
   end
 
-  it 'produces multiple failure messages' do
+  it 'produces multiple failure messages when used with aggregate_failures' do
     actual   = {a: 1, b: {c: [1, 2, {d: 'actual'  }]}}
     expected = {a: 2, b: {c: [1, 2, {d: 'expected'}]}}
 
@@ -74,14 +74,6 @@ RSpec.describe DeepMatching do
     FAILURE
   end
 
-  def expect_in_message(message, expected)
-    expect(message).to include(expected.chomp.gsub(/^\s+/, ''))
-  end
-
-  def expect_success(actual, expected)
-    expect_deep_matching(actual, expected)
-  end
-
   def expect_multiple_failures(actual, expected)
     @raised_messages = []
 
@@ -92,6 +84,15 @@ RSpec.describe DeepMatching do
     end
   rescue RSpec::Expectations::ExpectationNotMetError => e
     @raised_messages << e.message
+  end
+
+
+  def expect_in_message(message, expected)
+    expect(message).to include(expected.chomp.gsub(/^\s+/, ''))
+  end
+
+  def expect_success(actual, expected)
+    expect_deep_matching(actual, expected)
   end
 
   def expect_failure(actual, expected, expected_failure)
